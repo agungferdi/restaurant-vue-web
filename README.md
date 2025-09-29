@@ -21,6 +21,8 @@ A full-stack web application for restaurant management built with Flask (backend
 - Delete orders
 - Order notes and special instructions
 - Real-time order tracking
+- **PDF Export**: Export all orders or filtered orders to professionally formatted PDF reports
+- **Individual Order Receipts**: Generate PDF receipts for single orders
 
 ### Authentication & Dashboard
 - Simple admin login system with session management
@@ -45,6 +47,7 @@ A full-stack web application for restaurant management built with Flask (backend
 - **CORS**: Flask-CORS
 - **File Upload**: Werkzeug
 - **Migration**: Flask-Migrate
+- **PDF Generation**: ReportLab for PDF reports and receipts
 
 ### Frontend
 - **Framework**: Vue.js 3
@@ -132,6 +135,10 @@ restaurant/
 
 ![Order Success Notification](images/notification_order.png)
 *Confirmation notifications for order operations with automatic redirect after successful creation.*
+
+### PDF Export Feature
+![PDF Export Result](images/pdf_result.png)
+*Professional PDF reports with order summary statistics and detailed order listings. Features include branded headers, formatted tables, and automatic file naming with timestamps. Supports filtering by status for targeted reports.*
 
 ## Quick Start
 
@@ -266,6 +273,8 @@ restaurant/
 | PUT | `/api/orders/{id}` | Update order | Yes |
 | DELETE | `/api/orders/{id}` | Delete order | Yes |
 | PUT | `/api/orders/{id}/status` | Update order status | Yes |
+| GET | `/api/orders/export-pdf` | Export all orders to PDF (supports status filter) | Yes |
+| GET | `/api/orders/{id}/export-pdf` | Export single order receipt to PDF | Yes |
 
 #### Order Object:
 ```json

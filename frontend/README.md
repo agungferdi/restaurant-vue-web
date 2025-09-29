@@ -9,6 +9,7 @@ This is the Vue.js frontend for the Restaurant Management System.
 - Admin authentication and session management
 - Menu management with image upload
 - Order management with real-time status updates
+- **PDF Export**: Professional order reports and individual receipts
 - Form validation and error handling
 - Toast notifications and confirmation dialogs
 

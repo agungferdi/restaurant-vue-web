@@ -10,6 +10,7 @@ This is the Flask-based backend API for the Restaurant Management System.
 - Image upload functionality
 - CORS support for frontend integration
 - Comprehensive error handling and validation
+- PDF export functionality with ReportLab for order reports and receipts
 
 ## API Endpoints
 
@@ -35,6 +36,8 @@ This is the Flask-based backend API for the Restaurant Management System.
 - `PUT /api/orders/{id}` - Update order (requires auth)
 - `DELETE /api/orders/{id}` - Delete order (requires auth)
 - `PUT /api/orders/{id}/status` - Update order status (requires auth)
+- `GET /api/orders/export-pdf` - Export all orders to PDF (supports status filter) (requires auth)
+- `GET /api/orders/{id}/export-pdf` - Export single order receipt to PDF (requires auth)
 
 ## Setup
 
@@ -139,3 +142,24 @@ HTTP status codes:
 - 401: Unauthorized
 - 404: Not Found
 - 500: Internal Server Error
+
+## Dependencies
+
+### Core Dependencies
+- **Flask 2.3.3**: Web framework
+- **Flask-SQLAlchemy 3.0.5**: Database ORM
+- **Flask-Login 0.6.3**: Authentication management
+- **Flask-CORS 4.0.0**: Cross-origin resource sharing
+- **PyMySQL 1.1.0**: MySQL database connector
+- **ReportLab 4.0.4**: PDF generation library
+- **Werkzeug 2.3.7**: WSGI utilities and file upload handling
+- **python-dotenv 1.0.0**: Environment variable management
+- **cryptography 41.0.4**: Password hashing and security
+
+### PDF Export Features
+- Professional order reports with company branding
+- Summary statistics (total orders, revenue, status breakdown)
+- Detailed order tables with customer information and items
+- Individual order receipts for customer transactions
+- Automatic file naming with timestamps
+- Support for status filtering in bulk exports
