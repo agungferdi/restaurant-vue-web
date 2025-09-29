@@ -1,8 +1,10 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, send_file
 from flask_login import login_required
+from datetime import datetime
 from app import db
 from app.models.order import Order, OrderItem
 from app.models.menu import Menu
+from app.services.pdf_service import OrderPDFService
 
 bp = Blueprint('orders', __name__, url_prefix='/api/orders')
 
@@ -226,3 +228,71 @@ def update_order_status(order_id):
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': 'Failed to update order status', 'details': str(e)}), 500
+
+@bp.route('/export-pdf', methods=['GET'])
+@login_required
+def export_orders_pdf():
+    """Export all orders to PDF"""
+    try:
+        # Get query parameters for filtering
+        status = request.args.get('status', '')
+        
+        # Build query
+        query = Order.query
+        
+        if status:
+            query = query.filter(Order.status == status)
+        
+        # Order by created_at desc and get all orders
+        orders = query.order_by(Order.created_at.desc()).all()
+        
+        # Create PDF service instance
+        pdf_service = OrderPDFService()
+        
+        # Generate PDF
+        pdf_buffer = pdf_service.generate_orders_pdf(orders)
+        
+        # Determine filename based on filter
+        if status:
+            filename = f"orders_{status}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+        else:
+            filename = f"all_orders_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+        
+        # Return PDF as download
+        return send_file(
+            pdf_buffer,
+            as_attachment=True,
+            download_name=filename,
+            mimetype='application/pdf'
+        )
+        
+    except Exception as e:
+        return jsonify({'error': 'Failed to export orders to PDF', 'details': str(e)}), 500
+
+@bp.route('/<int:order_id>/export-pdf', methods=['GET'])
+@login_required
+def export_single_order_pdf(order_id):
+    """Export single order to PDF"""
+    try:
+        # Get the order
+        order = Order.query.get_or_404(order_id)
+        
+        # Create PDF service instance
+        pdf_service = OrderPDFService()
+        
+        # Generate PDF
+        pdf_buffer = pdf_service.generate_single_order_pdf(order)
+        
+        # Create filename
+        filename = f"order_{order.id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+        
+        # Return PDF as download
+        return send_file(
+            pdf_buffer,
+            as_attachment=True,
+            download_name=filename,
+            mimetype='application/pdf'
+        )
+        
+    except Exception as e:
+        return jsonify({'error': 'Failed to export order to PDF', 'details': str(e)}), 500
