@@ -364,18 +364,6 @@ FLASK_ENV=production
 - [ ] Email notifications
 - [ ] Print receipts functionality
 
-## Contributing
-
-This project is part of a job application assessment. The implementation follows industry best practices and demonstrates proficiency in full-stack web development.
-
 ## License
 
-This project is created for educational and assessment purposes.
-
----
-
-**Developer**: [Your Name]  
-**Assessment**: Backend Developer Position  
-**Date**: October 2023
-
-For questions or clarifications, please contact the development team.
+**Developer**: Muhammad Agung   
