@@ -103,6 +103,36 @@ restaurant/
 └── README.md                   # This documentation
 ```
 
+## Screenshots
+
+### Login Page
+![Login Page](images/login.png)
+*Secure admin authentication with session management and form validation for username/password fields.*
+
+### Dashboard
+![Dashboard](images/dashboard.png)
+*Overview of key statistics including total menus, orders, revenue, and recent orders with real-time data.*
+
+### Menu Management
+![Menu Management](images/menus_page.png)
+*Complete menu listing with search functionality, category filtering, and pagination for efficient browsing.*
+
+![Add Menu Form](images/add_menus_form.png)
+*Menu creation form with comprehensive validation including required fields (name, price, category), price validation (must be > 0), file type validation for images (PNG, JPG, JPEG, GIF up to 10MB), and availability toggle.*
+
+![Menu Success Notification](images/notification_menu.png)
+*Success feedback with toast notifications for all CRUD operations.*
+
+### Order Management
+![Order Management](images/orders.png)
+*Order tracking system where status reflects payment state: **Pending** = customer hasn't paid bill yet (can pay after eating), **Completed** = bill paid, **Cancelled** = order cancelled. Includes search by customer name and status filtering.*
+
+![New Order Form](images/new_order_form.png)
+*Order creation with validation for customer name (required), at least one menu item, quantity validation (must be > 0), menu availability check, and automatic total calculation. Status can be set to Pending or Completed during creation.*
+
+![Order Success Notification](images/notification_order.png)
+*Confirmation notifications for order operations with automatic redirect after successful creation.*
+
 ## Quick Start
 
 ### Prerequisites
@@ -366,4 +396,4 @@ FLASK_ENV=production
 
 ## License
 
-**Developer**: Muhammad Agung   
+**Developer**: Muhammad Agung Ferdiansyah
