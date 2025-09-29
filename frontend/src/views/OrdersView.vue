@@ -131,7 +131,7 @@
                     </div>
                   </div>
                   <div class="flex items-center space-x-2">
-                    <!-- Status Update Buttons -->
+                    <!-- Status Update Buttons - Only show for pending orders -->
                     <div v-if="order.status === 'pending'" class="flex space-x-1">
                       <button
                         @click="updateOrderStatus(order.id, 'completed')"
@@ -147,6 +147,7 @@
                       </button>
                     </div>
                     
+                    <!-- Edit and Delete buttons always visible -->
                     <router-link
                       :to="`/orders/${order.id}/edit`"
                       class="bg-primary-600 hover:bg-primary-700 text-white text-xs font-medium py-1 px-3 rounded"

@@ -67,7 +67,7 @@ def create_order():
         order = Order(
             customer_name=data['customer_name'],
             notes=data.get('notes', ''),
-            status='pending'
+            status=data.get('status', 'pending')
         )
         
         db.session.add(order)
