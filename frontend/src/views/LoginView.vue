@@ -66,16 +66,6 @@
             </button>
           </div>
         </form>
-
-        <div class="mt-6">
-          <div class="rounded-md bg-blue-50 p-4">
-            <div class="text-sm text-blue-800">
-              <strong>Demo Credentials:</strong><br>
-              Username: admin<br>
-              Password: admin123
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
