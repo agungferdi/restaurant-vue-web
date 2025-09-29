@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -32,6 +32,12 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(menus_bp)
     app.register_blueprint(orders_bp)
+    
+    # Static file serving route
+    @app.route('/static/uploads/<filename>')
+    def uploaded_file(filename):
+        upload_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'uploads'))
+        return send_from_directory(upload_dir, filename)
     
     # Import models to register them with SQLAlchemy
     from app.models import admin, menu, order
