@@ -2,6 +2,9 @@
 
 A full-stack web application for restaurant management built with Flask (backend) and Vue.js (frontend).
 
+## Demo Video
+
+**[Watch Live Demo Testing](https://drive.google.com/file/d/1W-iyn8K_qJi-DgyDxEx_Wx0yKE-9SJQw/view?usp=sharing)** - Complete walkthrough of all features 
 ## Features
 
 ### Menu Management
