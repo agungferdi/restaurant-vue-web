@@ -22,7 +22,7 @@ def init_database():
             admin = Admin(username='admin')
             admin.set_password('admin123')
             db.session.add(admin)
-            print("✅ Created default admin user (admin/admin123)")
+            print("Created default admin user (admin/admin123)")
         
         # Add sample menu items
         if Menu.query.count() == 0:
@@ -201,7 +201,7 @@ def init_database():
         
         # Commit all changes
         db.session.commit()
-        print("✅ Database initialization completed successfully!")
+        print("Database initialization completed successfully!")
 
 if __name__ == '__main__':
     init_database()
